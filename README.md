@@ -4,6 +4,9 @@ Misskey開発のためにローカルで雑にMastodonを上げる。
 
 production挙動で開発環境でちゃんとしたドメインで連合することを目指す。
 
+ローカルのnginxでName-based Virtual Hostで動かすことを想定。  
+SSL証明書はLet's Encryptなどで取って来ることを想定。
+
 ## Usage
 
 ### PostgreSQLとRedisを上げる
