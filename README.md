@@ -10,11 +10,17 @@ production挙動で開発環境でちゃんとしたドメインで連合する�
 
 ## Usage
 
+このブランチをチェックアウト
+```
+git clone https://github.com/mei23/mastodon-dev-for-misskey -b mein
+cd mastodon-dev-for-misskey
+```
+
 ### PostgreSQLとRedisを上げる
 
 めんどくさいのでDockerで上げる
 
-別端末を開いて `docker-compose up` してほっとくだけでOK
+`mastodon-dev-for-misskey`  ディレクトリで別端末を開いて `docker-compose up` してほっとくだけでOK
 
 - PG: Port 52871, Redis: Port 52872 で上がる。 
 - PGのDB名/ユーザー/パスワードは全部 `mastodon`
@@ -24,6 +30,7 @@ production挙動で開発環境でちゃんとしたドメインで連合する�
 
 ウィザードめんどくさいので生成してしまう
 
+`mastodon-dev-for-misskey` ディレクトリで
 ```
 yarn
 npx ts-node src/genenv.ts
@@ -34,7 +41,10 @@ npx ts-node src/genenv.ts
 
 ### Mastodonを構築
 
-Ubuntu 18.04, 20.04, 22.04 あたりでこのあたりが必要
+Ubuntu 18.04, 20.04, 22.04 あたりなら動く  
+Node v16が推奨  
+
+パッケージはこのあたりが必要
 ```
 sudo apt update
 sudo apt install -y \
@@ -69,6 +79,8 @@ rbenv install 3.0.4
 ```
 
 依存関係のインストール
+
+`mastodon` ディレクトリで
 ```
 gem install bundler --no-document
 bundle config deployment 'true'
