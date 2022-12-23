@@ -1,5 +1,7 @@
 # mastodon-dev-for-misskey
 
+Dockerイメージを使う版
+
 Misskey開発のためにローカルで雑にMastodonを上げる。
 
 production挙動で開発環境でちゃんとしたドメインで連合することを目指す。
