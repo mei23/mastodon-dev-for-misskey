@@ -10,19 +10,7 @@ production挙動で開発環境でちゃんとしたドメインで連合する�
 
 ## Usage
 
-### PostgreSQLとRedisを上げる
-
-めんどくさいのでDockerで上げる
-
-別端末を開いて `docker-compose up` してほっとくだけでOK
-
-- PG: Port 52871, Redis: Port 52872 で上がる。 
-- PGのDB名/ユーザー/パスワードは全部 `mastodon`
-- DBを作るとか、RedisのDB IDどうするとかめんどくさいことはしなくていい
-
 ### Mastodonの.env.productionを作る
-
-ウィザードめんどくさいので生成してしまう
 
 ```
 yarn
@@ -48,12 +36,11 @@ docker-compose run --rm web bin/tootctl accounts create a --email a@localhost --
 ```
 sudo docker-compose up
 ```
+が、なんかassetsが一部404になる。
 
 ### nginxをいい感じに設定する
 https://github.com/mastodon/mastodon/blob/main/dist/nginx.conf
 ```
-3000 => 52873
-4000 => 52874
 example.com => <ドメイン>
 /home/mastodon/live/public => <Mastodonをcloneしたディレクトリ/public>
 ```
