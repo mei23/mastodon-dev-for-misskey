@@ -6,7 +6,7 @@ production挙動で開発環境でちゃんとしたドメインで連合する�
 
 - ローカルのnginxでName-based Virtual Hostで動かすことを想定。
 - SSL証明書はLet's Encryptなどで取って来ることを想定。
-- ソースを多少触るかもなのでとりあえずDockerは、PostgreSQLとRedisのみ使うことにする
+- ここではDockerイメージを使う。
 
 ## Usage
 
