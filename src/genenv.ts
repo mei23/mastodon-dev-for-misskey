@@ -1,5 +1,5 @@
 import { randomBytes } from 'crypto';
-import { writeFileSync } from 'fs';
+import { existsSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 import * as webpush from 'web-push';
 
@@ -34,5 +34,8 @@ t = t.replace('%VAPID_PUBLIC_KEY%', vapidKeys.publicKey);
 t = t.replace('%SECRET_KEY_BASE%', randomBytes(64).toString('hex'));
 t = t.replace('%OTP_SECRET%', randomBytes(64).toString('hex'));
 
+const out = resolve(__dirname, '../.env.production');
+if (existsSync(out)) throw `Error: ${out} は既に存在する`;
+
 console.log(t);
-writeFileSync(resolve(__dirname, '../.env.production'), t);
+writeFileSync(out, t);
