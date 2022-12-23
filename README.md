@@ -34,81 +34,20 @@ npx ts-node src/genenv.ts
 
 ### Mastodonを構築
 
-Ubuntu 18.04, 20.04, 22.04 あたりでこのあたりが必要
-```
-sudo apt update
-sudo apt install -y \
-  imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev file git-core \
-  g++ libprotobuf-dev protobuf-compiler pkg-config nodejs gcc autoconf \
-  bison build-essential libssl-dev libyaml-dev libreadline6-dev \
-  zlib1g-dev libncurses5-dev libffi-dev libgdbm-dev \
-  nginx redis-server redis-tools postgresql postgresql-contrib \
-  certbot python3-certbot-nginx libidn11-dev libicu-dev libjemalloc-dev
-```
-
-どこか別のディレクトリでMastodonをチェックアウト
-```
-git clone https://github.com/mastodon/mastodon.git
-cd mastodon
-git checkout <バージョン>
-```
-
-必要ならrbenvなどをインストール
-```
-git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-cd ~/.rbenv && src/configure && make -C src
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-exec bash
-git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-```
-
-必要ならRubyをインストール (バージョンは `.ruby-version` を参照)
-```
-rbenv install 3.0.4
-```
-
-依存関係のインストール
-```
-gem install bundler --no-document
-bundle config deployment 'true'
-bundle config without 'development test'
-bundle install -j$(getconf _NPROCESSORS_ONLN)
-# だらだらwarningが出てきて成功したかわからないが `echo $?` で `0` が返ってくればたぶん成功している
-
-yarn install --pure-lockfile
-```
-
-さっき作った `.env.production` をコピーしてくる
-```
-cp -i ../mastodon-dev-for-misskey/.env.production .
-```
-
 DBスキーマ作成
 ```
-RAILS_ENV=production bundle exec rails db:migrate
-```
-
-assets:precompile
-```
-RAILS_ENV=production bundle exec rails assets:precompile
+docker-compose run --rm web rails db:migrate
 ```
 
 Ownerアカウントを作る
 ```
-RAILS_ENV=production bin/tootctl accounts create a --email a@localhost --confirmed --role Owner
+docker-compose run --rm web bin/tootctl accounts create a --email a@localhost --confirmed --role Owner
 ```
+が、Dockerだとチェックにかかって作れない。
 
-Systemd登録するのめんどいのでフォアグラウンドで上げる.
 ```
-# 以下のファイルを持ってくる
-cp -i ../mastodon-dev-for-misskey/Procfile.prod .
-
-gem install foreman --no-document
-
-foreman start -f Procfile.prod 
+sudo docker-compose up
 ```
-これで、Web: Port 52873, Streaming: Port 52874 で上がるはず。
 
 ### nginxをいい感じに設定する
 https://github.com/mastodon/mastodon/blob/main/dist/nginx.conf
