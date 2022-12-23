@@ -30,6 +30,10 @@ npx ts-node src/genenv.ts
 
 ### Mastodonを構築
 
+```
+docker-compose build
+```
+
 DBスキーマ作成
 ```
 docker-compose run --rm web rails db:migrate
@@ -40,6 +44,11 @@ Ownerアカウントを作ろうとするが
 docker-compose run --rm web bin/tootctl accounts create a --email a@localhost --confirmed --role Owner
 ```
 Dockerだとチェックにかかってしまうのでここでは作れない。
+
+Fix permission
+```
+chown -R 991:991 public/system
+```
 
 とりあえず上げる
 ```
