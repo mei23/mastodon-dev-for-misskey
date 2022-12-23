@@ -61,7 +61,7 @@ Webにアクセスしてアカウントを登録。
 
 以下のコマンドでメールアドレスを確認済みにしてアカウントをOwnerにする。
 ```
-docker-compose run --rm web bin/tootctl accounts modify a --email a@localhost --confirm --role Owner
+docker-compose run --rm web bin/tootctl accounts modify a --confirm --role Owner
 ```
 
 backend, streaming, cache path, cache key などが被りやすい
