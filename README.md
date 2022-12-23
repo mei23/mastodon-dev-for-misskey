@@ -28,7 +28,7 @@ production挙動で開発環境でちゃんとしたドメインで連合する�
 yarn
 npx ts-node src/genenv.ts
 ```
-で、Mastodonのproduction用のconfig `.env.production` を生成される。
+で、Mastodonのproduction用のconfig `.env.production` が生成される。
 
 ドメインは適切に置き換える。
 
