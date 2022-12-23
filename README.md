@@ -31,19 +31,23 @@ Ownerアカウントを作る
 ```
 docker-compose run --rm web bin/tootctl accounts create a --email a@localhost --confirmed --role Owner
 ```
-が、Dockerだとチェックにかかって作れない。
+が、Dockerだとチェックにかかってしまうのでここでは作れない。
+
+なので、ちゃんとメールを送れるようにしないとユーザーが作れない。
 
 ```
 sudo docker-compose up
 ```
-が、なんかassetsが一部404になる。
 
 ### nginxをいい感じに設定する
 https://github.com/mastodon/mastodon/blob/main/dist/nginx.conf
-```
-example.com => <ドメイン>
-/home/mastodon/live/public => <Mastodonをcloneしたディレクトリ/public>
-```
+
+`3000` => `52873`  
+`4000` => `52874`  
+`example.com` => `<ドメイン>`  
+`/home/mastodon/live/public` => `とりあえず何もないディレクトリに`  
+`try_files $uri =404;` => `try_files $uri @proxy;`  
+
 backend, streaming, cache path, cache key などが被りやすい
 
 完了
