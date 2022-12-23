@@ -1,0 +1,3 @@
+web: env PORT=52873 RAILS_ENV=production bundle exec puma -C config/puma.rb
+sidekiq: env PORT=52873 RAILS_ENV=production bundle exec sidekiq
+stream: env PORT=52874 NODE_ENV=production yarn run start

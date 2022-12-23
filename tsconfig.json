@@ -1,0 +1,33 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"noEmitOnError": false,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noUnusedParameters": false,
+		"noUnusedLocals": true,
+		"noFallthroughCasesInSwitch": true,
+		"declaration": false,
+		"sourceMap": true,
+		"target": "es2017",
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"removeComments": false,
+		"noLib": false,
+		"strict": true,
+		"strictNullChecks": true,
+		"experimentalDecorators": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"outDir": "built",
+		"rootDir": "src",
+		"typeRoots": [
+			"node_modules/@types",
+			"src/@types"
+		]
+	},
+	"compileOnSave": false,
+	"include": [
+		"./src/**/*.ts"
+	]
+}
