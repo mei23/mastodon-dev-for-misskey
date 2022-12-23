@@ -4,8 +4,9 @@ Misskey開発のためにローカルで雑にMastodonを上げる。
 
 production挙動で開発環境でちゃんとしたドメインで連合することを目指す。
 
-ローカルのnginxでName-based Virtual Hostで動かすことを想定。  
-SSL証明書はLet's Encryptなどで取って来ることを想定。
+- ローカルのnginxでName-based Virtual Hostで動かすことを想定。
+- SSL証明書はLet's Encryptなどで取って来ることを想定。
+- ソースを多少触るかもなのでとりあえずDockerは、PostgreSQLとRedisのみ使うことにする
 
 ## Usage
 
@@ -32,6 +33,18 @@ npx ts-node src/genenv.ts
 ドメインは適切に置き換える。
 
 ### Mastodonを構築
+
+Ubuntu 18.04, 20.04, 22.04 あたりでこのあたりが必要
+```
+sudo apt update
+sudo apt install -y \
+  imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev file git-core \
+  g++ libprotobuf-dev protobuf-compiler pkg-config nodejs gcc autoconf \
+  bison build-essential libssl-dev libyaml-dev libreadline6-dev \
+  zlib1g-dev libncurses5-dev libffi-dev libgdbm-dev \
+  nginx redis-server redis-tools postgresql postgresql-contrib \
+  certbot python3-certbot-nginx libidn11-dev libicu-dev libjemalloc-dev
+```
 
 どこか別のディレクトリでMastodonをチェックアウト
 ```
