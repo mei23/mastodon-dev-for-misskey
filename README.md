@@ -64,6 +64,8 @@ https://github.com/mastodon/mastodon/blob/main/dist/nginx.conf
 `/home/mastodon/live/public` => `とりあえず何もないディレクトリに`  
 `try_files $uri =404;` => `try_files $uri @proxy;`  
 
+backend, streaming, cache path, cache key などが他の環境と被りやすいので被ったら適当に変える
+
 ### 管理者アカウントの作成
 
 Webにアクセスしてアカウントを登録。
@@ -72,7 +74,5 @@ Webにアクセスしてアカウントを登録。
 ```
 docker-compose run --rm web bin/tootctl accounts modify a --confirm --role Owner
 ```
-
-backend, streaming, cache path, cache key などが被りやすい
 
 完了
